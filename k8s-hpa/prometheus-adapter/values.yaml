@@ -1,0 +1,15 @@
+prometheus:
+  # Value is templated
+  url: http://prometheus-operated
+  port: 9090
+  path: ""
+
+rules:
+  custom:
+  - seriesQuery: 'http_requests_total'
+    resources:
+        template: "<<.Resource>>"
+    name:
+      matches: "^(.*)_total"
+      as: "my_custom_metric"
+    metricsQuery: 'sum(rate(<<.Series>>{<<.LabelMatchers>>}[1m])) by (<<.GroupBy>>)'

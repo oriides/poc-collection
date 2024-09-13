@@ -1,0 +1,9 @@
+# ignore
+.vscode
+**/target/**
+*.log
+Cargo.lock
+
+# allow
+!**/target/doc/
+!**/target/doc/**
